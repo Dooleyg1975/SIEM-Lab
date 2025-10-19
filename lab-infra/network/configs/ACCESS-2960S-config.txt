@@ -1,0 +1,13 @@
+! ================================================================
+! Device: ACCESS-2960S (Honeypots/IoT)
+! Uplink: Gi1/0/24 trunk to CORE-3850E (30,50,99)
+! Default access VLAN: 50
+! ================================================================
+! hostname ACCESS-2960S
+! vlan 50,99,30
+! interface Gi1/0/24
+!  switchport mode trunk
+!  switchport trunk allowed vlan 30,50,99
+!
+! (Access ports default vlan 50 unless noted)
+! ==================== PASTE LIVE CONFIG BELOW ====================

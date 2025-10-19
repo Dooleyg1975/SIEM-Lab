@@ -1,0 +1,27 @@
+! ================================================================
+! Device: EDGE-ISR4331
+! Role  : WAN Edge (NAT, OSPF to core, optional ZBFW)
+! WAN   : Gi0/0/0 (DHCP or static)
+! LAN   : Gi0/0/1 -> CORE-3850E (10.0.0.1/30)
+! ================================================================
+! hostname EDGE-ISR4331
+! ip name-server 1.1.1.1
+!
+! interface Gi0/0/0
+!  ip address dhcp
+!  ip nat outside
+!
+! interface Gi0/0/1
+!  ip address 10.0.0.1 255.255.255.252
+!  ip nat inside
+!
+! ip access-list standard NAT_INSIDE
+!  permit 192.168.0.0 0.0.255.255
+! ip nat inside source list NAT_INSIDE interface Gi0/0/0 overload
+!
+! router ospf 1
+!  network 10.0.0.0 0.0.0.3 area 0
+!  default-information originate always
+!
+! (Optional ZBFW…) 
+! ==================== PASTE LIVE CONFIG BELOW ====================

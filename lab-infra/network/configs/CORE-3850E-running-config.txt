@@ -1,0 +1,39 @@
+! ================================================================
+! Device: CORE-3850E
+! Role  : L3 Core (SVIs, inter-VLAN, NetFlow, SPAN, OSPF to ISR4331)
+! VLANs : 10,20,30,40,50,60,99
+! Notes : Gateways on SVIs; routed /30 to edge
+! ================================================================
+! === INVENTORY / MGMT
+! hostname CORE-3850E
+! username <admin> secret <redacted>
+! ip ssh version 2
+!
+! === L3 / SVIs
+! ip routing
+! interface Vlan99  ip address 192.168.99.1 255.255.255.0
+! interface Vlan10  ip address 192.168.10.1 255.255.255.0
+! interface Vlan20  ip address 192.168.20.1 255.255.255.0
+! interface Vlan30  ip address 192.168.30.1 255.255.255.0
+! interface Vlan40  ip address 192.168.40.1 255.255.255.0
+! interface Vlan50  ip address 192.168.50.1 255.255.255.0
+! interface Vlan60  ip address 192.168.60.1 255.255.255.0
+!
+! === EDGE LINK (/30)
+! interface Gi1/0/24
+!  no switchport
+!  ip address 10.0.0.2 255.255.255.252
+!
+! === OSPF
+! router ospf 1
+!  router-id 192.168.99.1
+!  network 10.0.0.0 0.0.0.3 area 0
+!
+! === TRUNKS
+! Gi1/0/1 trunk to 2960X; Gi1/0/2 trunk to 2960S
+!
+! === ACLs / QoS / SPAN / NetFlow (document details below)
+! monitor session 1 source vlan 50 both
+! monitor session 1 destination interface Gi1/0/23
+! ...
+! ==================== PASTE LIVE CONFIG BELOW ====================
