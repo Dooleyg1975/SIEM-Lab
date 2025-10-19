@@ -1,0 +1,7 @@
+From Device,From Port,To Device,To Port,Function
+CORE-3850E,Gi1/0/24,ISR4331,Gi0/0/1,Edge Routed Link
+2960X,Gi1/0/24,CORE-3850E,Gi1/0/1,Access Trunk
+2960S,Gi1/0/24,CORE-3850E,Gi1/0/2,Honeypot/IoT Trunk
+AP-01,eth0,2960X,Gi1/0/9,AP Trunk
+Lenovo-Admin,eth0,2960X,Gi1/0/10,MGMT99
+Sensor,eth0,3850E,Gi1/0/23,SPAN Destination
